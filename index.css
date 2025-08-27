@@ -1,0 +1,81 @@
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #fff;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fafafa;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.button-group {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+button.panic {
+  background: #d32f2f;
+  color: #fff;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+button.suspicious {
+  background: #fbc02d;
+  color: #333;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.alert-list {
+  margin-top: 2rem;
+}
+.alert-list ul {
+  list-style: none;
+  padding: 0;
+}
+.alert-list li {
+  background: #fff;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+}
+.time {
+  color: #888;
+  font-size: 0.9em;
+  margin-left: 1em;
+}
+.modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  min-width: 300px;
+}
+.modal-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+input[type="text"] {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+}

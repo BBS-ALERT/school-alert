@@ -23,8 +23,7 @@ app.get("/", (req, res) => {
 // Register device
 app.post("/register", (req, res) => {
   const { token } = req.body;
-  if (!tokens.includes(token)) tokens.push(token);
-  console.log("Registered:", token);
+  if (token && !tokens.includes(token)) tokens.push(token);
   res.sendStatus(200);
 });
 
@@ -39,8 +38,9 @@ app.post("/alert", async (req, res) => {
   };
 
   try {
-    await admin.messaging().sendToDevice(tokens, payload);
-    console.log("Alert sent:", payload);
+    if (tokens.length > 0) {
+      await admin.messaging().sendToDevice(tokens, payload);
+    }
     res.sendStatus(200);
   } catch (error) {
     console.error("Error sending alert:", error);

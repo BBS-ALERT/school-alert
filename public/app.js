@@ -16,34 +16,52 @@ const messaging = getMessaging(app);
 
 Notification.requestPermission().then(permission => {
   if (permission === "granted") {
-    getToken(messaging, { vapidKey: "YOUR_VAPID_KEY" }).then(token => {
-      console.log("FCM Token:", token);
-      fetch("/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token })
-      });
+    getToken(messaging, { vapidKey: "BN8YH1KjQ1mCz8J9z8J9z8J9z8J9z8J9z8J9z8J9z8J9z8J9" }).then(token => {
+      if (token) {
+        fetch("/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ token })
+        });
+      }
     });
   }
 });
 
 onMessage(messaging, payload => {
-  console.log("Message received:", payload);
   document.getElementById("log").innerHTML += `<p>${payload.notification.title}: ${payload.notification.body}</p>`;
 });
 
-window.sendAlert = function(type) {
+function playPanicSound() {
+  const audio = document.getElementById("panic-audio");
+  if (audio) {
+    audio.currentTime = 0;
+    audio.play().catch(error => {
+      console.error("Audio playback failed:", error);
+      alert("Unable to play sound. Please check your browser settings.");
+    });
+  }
+}
+
+document.getElementById("panic-btn").addEventListener("click", () => {
   fetch("/alert", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      type,
-      message: type === "panic" ? "🚨 Panic Alert!" : "👀 Suspicious Activity"
+      type: "panic",
+      message: "🚨 Panic Alert!"
     })
   });
+  playPanicSound();
+});
 
-  if (type === "panic") {
-    const audio = document.getElementById("panic-audio");
-    if (audio) audio.play();
-  }
-};
+document.getElementById("suspicious-btn").addEventListener("click", () => {
+  fetch("/alert", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      type: "suspicious",
+      message: "👀 Suspicious Activity"
+    })
+  });
+});
