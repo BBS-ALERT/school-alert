@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School Alert System</title>
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <h1>🚨 School Alert System</h1>
+  <audio id="panic-audio" src="panic.mp3"></audio>
+  <button onclick="sendAlert('panic')">Panic</button>
+  <button onclick="sendAlert('suspicious')">👀 Suspicious Alert</button>
+  <div id="log"></div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-messaging.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
